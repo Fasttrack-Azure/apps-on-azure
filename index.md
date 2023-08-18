@@ -1,0 +1,92 @@
+Welcome to the Cloud for Partners labs.
+
+These are hands-on resources to help you learn Azure Fundamentals.
+
+## Pre-Requisites
+- _For [Azure Portal](https://portal.azure.com) Access_
+    - Find your [Azure Credentials](https://docs.google.com/spreadsheets/d/154uyiBn-v6GGdCuf3qvQ28maXLrY80CQMu3jFqCP684/edit?usp=sharing)
+    - Open [Account Setup Guide](https://docs.google.com/document/d/1oJkt2yoh9kCQBzdKHfNGq_xTVzslvAxsk6G0YFbdM5s/edit?usp=sharing)
+- _Optional_
+    - Install [Visual Studio Code](https://code.visualstudio.com) (free - Windows, macOS and Linux) to browse the repo and documentation
+    - [Extentions](https://code.visualstudio.com/docs/editor/extension-marketplace) - c#, Azure Tools, Kubernetes, Helm, Docker, Git Lens
+- _Software_
+    - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
+    - [.NET SDK 6.x (LTS)](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+    - [Docker Desktop](https://www.docker.com/products/docker-desktop)
+    - [Helm](https://helm.sh/docs/intro/install/) 
+    - [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
+- _Download the course [Slides](https://drive.google.com/drive/folders/1-Uw1UlYwSCWoQz62NmMZn93eYkVXf032?usp=sharing) here_
+
+
+# Day 1
+
+## Azure Management
+
+- [Management using Azure Portal](labs/management/azureportal/README.md)
+- [Management using Azure CLI](labs/management/azurecli/README.md)
+
+## Azure Resource Groups
+
+- [Working with Azure Resource Groups](labs/resourcegroups/README.md)
+
+## Azure App Services
+
+- [Working with Azure App Services](labs/paas/README.md)
+
+## Azure Storage
+  
+- [Working with Azure Storage](labs/storage/README.md)
+
+# Day 2
+
+## Working with Azure SQL Database
+  
+- Step 3 in [Developing Scalable Apps on Azure](labs/paas/README.md)
+
+## Working with Azure Redis
+  
+- Step 4 in [Developing Scalable Apps on Azure](labs/paas/README.md)
+
+
+## Azure AD Integration
+- Step 5 in [Developing Scalable Apps on Azure](labs/paas/README.md)
+
+## Kubernetes - Core Concepts
+
+- [Nodes](labs/aks/nodes/README.md)
+- [Pods](labs/aks/pods/README.md)
+- [Services](labs/aks/services/README.md)
+- [Deployments](labs/aks/deployments/README.md)
+
+
+
+# Day 3
+## Azure Kubernetes Service
+
+## Kubernetes and Azure
+- [Deploying to AKS with ACR](https://github.com/Developing-Scalable-Apps-using-Azure/Core-Kubernetes))
+
+## Application Modelling
+
+- [ConfigMaps](labs/configmaps/README.md)
+- [Namespaces](labs/namespaces/README.md)
+- [Secrets](labs/secrets/README.md)
+- [PersistentVolumes](labs/persistentvolumes/README.md)
+
+## Operating Kubernetes
+
+- [Production readiness](labs/productionizing/README.md)
+- [Monitoring](labs/monitoring/README.md)
+- [Logging](labs/logging/README.md)
+
+
+
+# Day 4
+
+## Case Studies
+- [Case Studies](casestudies/README.md)
+
+## Real Kubernetes
+
+- [Troubleshooting](labs/troubleshooting/README.md)
+- [Hackathon!](hackathon/README.md)
