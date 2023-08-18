@@ -311,12 +311,14 @@ Create an Azure AD app registration with secret value: w5R8Q~yEPejsgL1aJ4ubYVa5v
         "CallbackPath": "/signin-oidc"
       }
 ```
-2. Add support for Azure AD
+
+2. Add support for Azure AD:
 ```
  <PackageReference Include="Microsoft.Identity.Web" Version="1.1.0" />
  <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.1.0" />
  <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.2.9" />
- ```
+```
+
 3. Update Program.cs
 Update the below builder services:
 ```
@@ -336,13 +338,15 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 });
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAd"));
-```         
+```
+
 In the configure method:
  
 ```
 app.UseCookiePolicy();
 app.UseAuthentication();
-```                
+```     
+
 ## Step 6.
 Add _LoginPartial.cshtml to the views -> shared directory
 ```
@@ -368,10 +372,12 @@ Add _LoginPartial.cshtml to the views -> shared directory
     }
 </ul>
 ```
+
 Add partial layout in the _Layout.cshtml file for sign in/out:
 ```
 	<partial name="_LoginPartial" />
 ```
+
 <img width="1172" alt="image" src="https://user-images.githubusercontent.com/11691661/225157130-5dcfb992-574a-4181-b014-000aad282ec1.png">
 
 
