@@ -9,9 +9,7 @@ You introduce some complexity using namespaces but they give you a lot of safegu
 ## API specs
 
 - [Namespace](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#namespace-v1-core)
-
-<details>
-  <summary>YAML overview</summary>
+### YAML overview
 
 The basic YAML for a namespace is extremely simple:
 
@@ -34,7 +32,6 @@ metadata:
 
 Namespaces can't be nested, it's a single-level hierarchy used to partition the cluster.
 
-</details><br />
 
 ## Creating and using namespaces
 
@@ -58,8 +55,6 @@ You can work with system resources in the same way as your own apps, but you nee
 
 📋 Print the logs of the system DNS server.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl logs -l k8s-app=kube-dns
@@ -67,7 +62,6 @@ kubectl logs -l k8s-app=kube-dns
 kubectl logs -l k8s-app=kube-dns -n kube-system
 ```
 
-</details><br />
 
 Adding a namespace to every command is time-consuming, and Kubectl has [contexts](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration) to let you set the default namespace for commands:
 
@@ -91,8 +85,6 @@ All Kubectl commands work against the cluster and namespace in the current conte
 
 📋 Print some Pod details from the system namespace and the default namespace.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl get po
@@ -102,18 +94,14 @@ kubectl logs -l k8s-app=kube-dns
 kubectl get po -n default
 ```
 
-</details><br />
 
 📋 Switch your context back to the `default` namespace so we don't accidentally do anything dangerous.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl config set-context --current --namespace default
 ```
 
-</details><br />
 
 ## Deploying objects to namespaces
 
@@ -123,8 +111,6 @@ Object specs can include the target namespace in the YAML. If it is not specifie
 
 📋 Deploy the Pod spec in `labs/namespaces/specs/sleep-pod.yaml` to the default namespace and the system namespace.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/namespaces/specs/sleep-pod.yaml -n default
@@ -134,7 +120,6 @@ kubectl apply -f labs/namespaces/specs/sleep-pod.yaml -n kube-system
 kubectl get pods -l app=sleep --all-namespaces
 ```
 
-</details><br />
 
 > Namespace access can be restricted with access controls, but in your dev environment you'll have cluster admin permissions so you can see everything.
 
@@ -164,8 +149,6 @@ Here's another app where all the components will be isolated in their own namesp
 
 📋 Deploy the app and use Kubectl to list Deployments in all namespaces.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/namespaces/specs/configurable
@@ -173,7 +156,6 @@ kubectl apply -f labs/namespaces/specs/configurable
 kubectl get deploy -A --show-labels
 ```
 
-</details><br />
 
 You can only use Kubectl with one namespace or all namespaces, so you might want additional labels for objects like Services, so you can list across all namespace and filter by label:
 
@@ -238,8 +220,6 @@ Let's speed it up:
 
 📋 Update the app and check the resources set in the Pod.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/namespaces/specs/pi/mid-cpu
@@ -247,7 +227,6 @@ kubectl apply -f labs/namespaces/specs/pi/mid-cpu
 kubectl describe po -l app=pi-web,cpu=mid -n pi
 ```
 
-</details><br />
 
 > Refresh http://localhost:30030/pi?dp=30000. On my machine it now takes about 1.2 seconds to respond.
 
@@ -279,8 +258,7 @@ ___
 
 ## **EXTRA** Context switching
 
-<details>
-  <summary>Learn about Kubectx and Kubens</summary>
+### Learn about Kubectx and Kubens
   
 When you work with a lot of Kubernetes clusters each with lots of namespaces, it gets very difficult to manage them.
 
@@ -331,7 +309,6 @@ And if you set up a fancy shell with [ZSH and PowerLevel10K](https://medium.com/
 
 ![](/img/ohmyzsh.png)
 
-</details><br/>
 
 ___
 

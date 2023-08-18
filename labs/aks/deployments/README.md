@@ -15,6 +15,7 @@ Deployments definitions have the usual metadata.
 
 The spec is more interesting - it includes a label selector but also a Pod spec. The Pod spec is the same format you would use to define a Pod in YAML, except you don't include a name.
 
+### YAML overview
 ```
 apiVersion: apps/v1
 kind: Deployment

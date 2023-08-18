@@ -7,8 +7,7 @@ It's difficult to work with Pod logs at scale - Kubectl doesn't let you search o
 - [Kubernetes logging architecture](https://kubernetes.io/docs/concepts/cluster-administration/logging/#logging-at-the-node-level)
 - [Fluent Bit configuration for Kubernetes](https://docs.fluentbit.io/manual/installation/kubernetes) 
 
-<details>
-  <summary>Fluent Bit configuration</summary>
+### Fluent Bit configuration
 
 Fluent Bit is a streamlined log collector which evolved from Fluentd. It will run as a Pod on every node, collecting that nodes container logs. Fluent Bit uses a pipeline to process logs. This input block reads container log files from the nodes:
 
@@ -39,7 +38,6 @@ This output block saves each log line as a document in Elasticsearch:
 - `Host` is the DNS name of the Elasticsearch server
 - `Index` is the name of the index where documents get created
 
-</details><br/>
 
 ## Finding Pod logs
 
@@ -51,8 +49,6 @@ The fulfiment API is a simple REST API which write log entries - there's nothing
 
 📋 Deploy the app and check the logs it prints at startup
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/logging/specs/fulfilment-api
@@ -62,7 +58,6 @@ kubectl logs -l app=fulfilment,component=api
 
 This is a Java Spring Boot app - you'll see a set of startup logs.
 
-</details><br/>
 
 The log entries are stored in the filesystem of the node that runs the Pod. You might not have access to the filesystem directly, but you can get it using a volume:
 
@@ -106,8 +101,6 @@ Logging is a cluster-wide concern and we'll run it in a separate namespace:
 
 📋 Which namespaces will have logs collected, and which indices will the log documents be stored in?
 
-<details>
-  <summary>Not sure?</summary>
 
 There are two output blocks in the ConfigMap:
 
@@ -128,8 +121,7 @@ There are two output blocks in the ConfigMap:
 ```
 
 The `Match` uses tag metadata which includes the namespace. Logs from the `default` namespace will be stored in the `app-logs` index and logs from `kube-system` will be stored in the `sys-logs` index.
-
-</details><br/>
+>
 
 _Deploy the app and wait for the Pods to be ready:_
 
@@ -162,8 +154,6 @@ curl http://localhost:8011/documents
 
 📋 Connect to the jumpbox Pod and make an HTTP request with curl, to the `/_cat/indices` path on the Elasticsearch Pod.
 
-<details>
-  <summary>Not sure how?</summary>
 
 First exec into a shell session on the Pod:
 
@@ -179,7 +169,6 @@ curl http://elasticsearch.logging.svc.cluster.local:9200/_cat/indices
 exit
 ```
 
-</details><br/>
 
 > The output shows a list of indices, which includes where logs are stored:
 
@@ -233,14 +222,11 @@ Switch to the Discover tab and choose the new index pattern. Kibana is pretty us
 
 📋 Filter the entries to show logs from Kubernetes API server.
 
-<details>
-  <summary>Not sure how?</summary>
 
 Click on the field `kubernetes.labels.component`, and you'll see all the values.
 
 Click the + next to `kube-apiserver` to see the API logs
 
-</details><br/>
 
 You'll see log entries about core system processes.
 

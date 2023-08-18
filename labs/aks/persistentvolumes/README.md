@@ -10,8 +10,7 @@ Those details are kept away from the application model using an abstraction - th
 
 - [PersistentVolumeClaim](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#persistentvolumeclaim-v1-core)
 
-<details>
-  <summary>YAML overview</summary>
+### YAML overview
 
 
 The simplest PersistentVolumeClaim (PVC) looks like this:
@@ -43,7 +42,6 @@ volumes:
       claimName: small-pvc
 ```
 
-</details><br />
 
 ## Data in the container's writeable layer
 
@@ -63,14 +61,10 @@ kubectl apply -f labs/persistentvolumes/specs/pi
 
 📋 Refresh and the response will be instant - check the response cache in Nginx, you can see it in the `/tmp` folder.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl exec deploy/pi-proxy -- ls /tmp
 ```
-
-</details><br />
 
 Now stop the container process, which forces a Pod restart:
 
@@ -106,8 +100,6 @@ Refresh your page to see the Pi calculation happen again - the result gets cache
 
 📋 Stop the Nginx process and the Pod will restart. Check the `tmp` folder in the new container to see if the old data is still available.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl exec deploy/pi-proxy -- kill 1
@@ -117,7 +109,6 @@ kubectl get pods -l app=pi-proxy,storage=emptydir
 kubectl exec deploy/pi-proxy -- ls /tmp
 ```
 
-</details><br />
 
 Refresh the site with the new container and it loads instantly.
 
@@ -150,8 +141,6 @@ Each StorageClass has a provisioner which can create the storage unit on-demand.
 
 📋 List the persistent volumes and claims.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl get pvc
@@ -161,7 +150,6 @@ kubectl get persistentvolumes
 
 > Some provisioners create storage as soon as the PVC is created - others wait for the PVC to be claimed by a Pod
 
-</details><br />
 
 
 This [Deployment spec](specs/caching-proxy-pvc/nginx.yaml) updates the Nginx proxy to use the PVC:
@@ -180,8 +168,6 @@ The PVC starts off empty. Refresh the app and you'll see the `/tmp` folder getti
 
 📋 Restart and then replace the Pod and confirm the data in the PVC survives both.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 # force the container to exit
@@ -203,7 +189,6 @@ kubectl exec deploy/pi-proxy -- ls /tmp
 
 Try the app again and the new Pod still serves the response from the cache, so it will be super fast.
 
-</details><br />
 
 > ℹ Data in PersistentVolumes has its own lifecycle. It survives until the PV is removed.
 
@@ -223,8 +208,7 @@ ___
 
 ## **EXTRA** Manual PVC management with PVs
 
-<details>
-  <summary>Take ownership of the PersistentVolumes lifecycle</summary>
+### Take ownership of the PersistentVolumes lifecycle
 
 Some provisioners delete a PV when the PVC using it gets deleted:
 
@@ -278,7 +262,6 @@ kubectl describe pod -l app=pi-proxy,storage=local
 
 Now the Pod is scheduled - but there's another error... That's one for you to think about (what you did in the lab will have helped) :)
 
-</details><br/>
 
 ___
 

@@ -11,8 +11,6 @@ These are the things you'll add to your application models to get ready for prod
 - [ContainerProbe](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#probe-v1-core)
 - [HorizontalPodAutoscaler (autoscaling/v1)](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#horizontalpodautoscaler-v1-autoscaling)
 
-<details>
-  <summary>YAML overview</summary>
 
 Container probes are part of the container spec inside the Pod spec:
 
@@ -53,7 +51,6 @@ spec:
 - `maxReplicas` - maximum number of replicas
 - `targetCPUUtilizationPercentage` - average CPU utilization target - below this the HPA will scale down, above it the HPA scales up
 
-</details><br/>
 
 ## Self-healing apps with readiness probes
 
@@ -63,14 +60,11 @@ The whoami app has a nice feature we can use to trigger a failure like that.
 
 📋 Start by deploying the app from `labs/productionizing/specs/whoami`.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/productionizing/specs/whoami
 ```
 
-</details><br/>
 
 You now have two whoami Pods - make a POST command and one of them will switch to a failed state:
 
@@ -93,8 +87,6 @@ You can tell Kubernetes how to test your app is healthy with [container probes](
 
 📋 Deploy the update in `labs/productionizing/specs/whoami/update` and wait for the Pods with label `update=readiness` to be ready.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/productionizing/specs/whoami/update
@@ -102,7 +94,6 @@ kubectl apply -f labs/productionizing/specs/whoami/update
 kubectl wait --for=condition=Ready pod -l app=whoami,update=readiness
 ```
 
-</details><br/>
 
 > Describe a Pod and you'll see the readiness check listed in the output
 
@@ -120,8 +111,6 @@ If a readiness check fails, the Pod is removed from the Service and it won't rec
 
 📋 Confirm the Service has only one Pod IP and test the app.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 # Ctrl-C to exit the watch
@@ -131,7 +120,6 @@ kubectl get endpoints whoami-np
 curl http://localhost:8010
 ```
 
-</details><br/>
 
 > Only the healthy Pod is in enlisted in the Service, so you will always get an OK response.
 
@@ -149,8 +137,6 @@ You'll often have the same tests for readiness and liveness, but the liveness ch
 
 📋 Deploy the update in `labs/productionizing/specs/whoami/update2` and wait for the Pods with label `update=liveness` to be ready.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/productionizing/specs/whoami/update2
@@ -158,12 +144,9 @@ kubectl apply -f labs/productionizing/specs/whoami/update2
 kubectl wait --for=condition=Ready pod -l app=whoami,update=liveness
 ```
 
-</details><br/>
 
 📋 Now trigger a failure in one Pod and watch to make sure it gets restarted.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 curl --data '503' http://localhost:8010/health
@@ -171,7 +154,6 @@ curl --data '503' http://localhost:8010/health
 kubectl get po -l app=whoami --watch
 ```
 
-</details><br/>
 
 > One Pod will become ready 0/1 -then it will restart, and then become ready 1/1 again.
 
@@ -203,8 +185,6 @@ The Pi app is compute intensive so it's a good target for an HPA:
 
 📋 Deploy the app from `labs/productionizing/specs/pi`, check the metrics for the Pod and print the details for the HPA.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/productionizing/specs/pi
@@ -214,7 +194,6 @@ kubectl top pod -l app=pi-web
 kubectl get hpa pi-cpu --watch
 ```
 
-</details><br/>
 
 > Initially the Pod is at 0% CPU. Open 2 browser tabs pointing to http://localhost:8020/pi?dp=100000 - that's enough work to max out the Pod and trigger the HPA
 
@@ -258,8 +237,7 @@ This app isn't CPU intensive so you won't be able to trigger the HPA by making H
 ___
 ## **EXTRA** Pod security 
 
-<details>
-  <summary>Restricting what Pod containers can do</summary>
+Restricting what Pod containers can do
 
 Container resource limits are necessary for HPAs, but you should have them in all your Pod specs because they provide a layer of security. Applying CPU and memory limits protects the nodes, and means workloads can't max out resources and starve other Pods.
 
@@ -299,8 +277,6 @@ Port 80 is privileged inside the container, so apps can't listen on it as a leas
 
 📋 Deploy the update and check it  fixes those security holes.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/productionizing/specs/pi-secure/update
@@ -318,11 +294,9 @@ kubectl exec deploy/pi-secure-web -- cat /var/run/secrets/kubernetes.io/servicea
 kubectl exec deploy/pi-secure-web -- chown root:root /app/Pi.Web.dll
 ```
 
-</details><br/>
 
 This is not the end of security - it's only the beginning. Securing containers is a multi-layered approach which starts with your securing your images, but this is a good step up from the default Pod security.
 
-</details><br/>
 
 ___
 ## Cleanup

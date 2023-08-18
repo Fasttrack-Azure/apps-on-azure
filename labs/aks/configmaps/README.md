@@ -6,8 +6,7 @@ There are two ways to store configuration settings in [ConfigMaps](https://kuber
 
 - [ConfigMap](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#configmap-v1-core)
 
-<details>
-  <summary>YAML overview</summary>
+### YAML overview
 
 ## ConfigMap and Pod YAML - using environment variables
 
@@ -89,8 +88,6 @@ Volumes are defined at the Pod level - they are storage units which are part of 
 * `volumeMounts.mountPath` - the directory path where the volume is surfaced
 * `volumeMounts.readOnly` - flag whether the volume is read-only or editable
 
-</details><br/>
-
 ## Run the configurable demo app
 
 The demo app for this lab has the logic to merge config from multiple sources. 
@@ -113,8 +110,6 @@ You see the default configuration settings from the JSON file in the container i
 
 📋 Exit the port-forward and remove the Pod.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 # Ctrl-C to exit the command
@@ -122,7 +117,6 @@ You see the default configuration settings from the JSON file in the container i
 kubectl delete pod configurable
 ```
 
-</details><br />
 
 ## Setting config with environment variables in the Pod spec
 
@@ -132,14 +126,11 @@ The Pod spec is where you apply configuration:
 
 📋 Deploy the app from the folder `labs/configmaps/specs/configurable/`
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl apply -f labs/configmaps/specs/configurable/
 ```
 
-</details><br />
 
 You can check the environment variable is set by running `printenv` inside the Pod container:
 
@@ -151,15 +142,12 @@ kubectl exec deploy/configurable -- printenv | grep __
 
 📋 Confirm that by browsing to the app from your Service.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 # print the Service details:
 kubectl get svc -l app=configurable
 ```
 
-</details><br />
 
 ## Setting config with environment variables in ConfigMaps
 
@@ -176,14 +164,11 @@ kubectl apply -f labs/configmaps/specs/configurable/config-env/
 
 📋 Print the environment variables set in the updated Pod.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl exec deploy/configurable -- printenv | grep __
 ```
 
-</details><br />
 
 > You should see the release is now `24.01.2` and there's a new setting `Configurable__Environment=uat`
 
@@ -206,8 +191,6 @@ kubectl apply -f labs/configmaps/specs/configurable/config-json/
 
 📋 Check the filesystem inside the container to see the file loaded from the ConfigMap into the `/app/config` path.
 
-<details>
-  <summary>Not sure how?</summary>
 
 Explore the container filesystem with `exec` commands:
 
@@ -221,7 +204,6 @@ kubectl exec deploy/configurable -- cat /app/config/override.json
 
 > The first JSON file is from the container image, the second is from the ConfigMap volume mount.
 
-</details><br />
 
 Something's not quite right though - the release setting is still coming from the environment variable:
 
@@ -247,8 +229,7 @@ Create two new ConfigMaps to support the Deployment in [deployment-lab.yaml](spe
 ___
 ## **EXTRA** Be careful with volume mounts
 
-<details>
-  <summary>Volume mounts can overwrite existing directories </summary>
+### Volume mounts can overwrite existing directories
 
 Loading ConfigMaps into volume mounts is very powerful, but there are a couple of gotchas to be aware of:
 
@@ -284,7 +265,6 @@ kubectl get replicaset -l app=configurable
 
 > The Deployment object won't scale down the old ReplicaSet until the new one reaches desired capacity. Using a Deployment keeps your app safe from issues like this.
 
-</details>
 
 ___
 

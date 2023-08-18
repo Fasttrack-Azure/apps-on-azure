@@ -13,6 +13,7 @@ Services and Pods are loosely-coupled: a Service finds target Pods using a [labe
 
 Service definitions have the usual metadata. The spec needs to include the network ports and the label selector:
 
+### YAML overview
 ```
 apiVersion: v1
 kind: Service

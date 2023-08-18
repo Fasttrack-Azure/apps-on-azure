@@ -8,8 +8,7 @@ Kubernetes can run hundreds of containers across dozens of servers. To keep trac
 - [Configuring Kubernetes service discovery](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#kubernetes_sd_config)
 - [Prometheus client libraries](https://prometheus.io/docs/instrumenting/clientlibs/) and [exporters](https://prometheus.io/docs/instrumenting/exporters/)
 
-<details>
-  <summary>Prometheus configuration</summary>
+### Prometheus configuration
 
 The Prometheus server runs in a Pod and connects to the Kubernetes API to find other Pods. You can configure service discovery to be opt-in (no Pods monitored by default), or opt-out (all Pods monitored by default). Application Pods use annotations to configure how they need to be monitored.
 
@@ -56,7 +55,6 @@ spec:
 
 Other annotations can be used to configure the port and HTTP path Prometheus should use to collect metrics.
 
-</details><br/>
 
 ## Deploy an application which publishes metrics 
 
@@ -91,23 +89,18 @@ We'll use a separate namespace for monitoring:
 
 📋 What setup do Pods need so that they're included in the Promtheus discovery?
 
-<details>
-  <summary>Not sure?</summary>
 
 This is an opt-in configuration. Pods need to:
 
 - run in the `default` namespace
 - have the annotation `prometheus.io/scrape: 'true'`
-  
-</details><br/>
+
 
 The fulfilment processor Pod matches the discovery configuration, so Prometheus will start scraping metrics when it finds the Pod.
 
 
 📋 Deploy the monitoring components and browse to the `/targets` path for the Prometheus Service.
 
-<details>
-  <summary>Not sure how?</summary>
 
 Deploy the specs:
 
@@ -122,8 +115,7 @@ kubectl get svc -n monitoring
 ```
 
 Browse to http://localhost:9090/targets or http://localhost:30990/targets
- 
-</details><br/>
+
 
 You'll see the fulfilment processor Pod listed - it should be in the _Up_ state.
 
@@ -147,8 +139,6 @@ Grafana connects to Prometheus - the deployment uses ConfigMaps and Secrets so t
 
 📋 Browse to the Grafana UI and log in as the admin user.
 
-<details>
-  <summary>Not sure how?</summary>
 
 Check the Service to find the port:
 
@@ -171,7 +161,6 @@ kubectl get secret -n monitoring grafana-creds -o jsonpath="{.data.GF_SECURITY_A
 
 Browse to http://localhost:3000 or http://localhost:30300 and log in with username `admin` and password `labs`.
 
-</details><br/>
 
 Now we're ready to load the application dashboard - we have a ready-made one we can import. Click on the + icon in the left navigation and select _Import_.
 

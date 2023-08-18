@@ -8,8 +8,6 @@ For sensitive information Kubernetes has [Secrets](https://kubernetes.io/docs/co
 
 - [Secrets](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#secret-v1-core)
 
-<details>
-  <summary>YAML overview</summary>
 
 ## Secrets and Pod YAML - environment variables
 
@@ -42,7 +40,6 @@ spec:
 
 * `envFrom` - load all the values in the source as environment variables
 
-</details><br />
 
 ## Creating Secrets from encoded YAML
 
@@ -58,8 +55,6 @@ kubectl apply -f labs/secrets/specs/configurable
 
 📋 Check the details of a ConfigMap and you can see all the values in plain text.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl get configmaps
@@ -69,7 +64,6 @@ kubectl describe cm configurable-env
 
 > That's why you don't want sensitive data in there.
 
-</details><br />
 
 This YAML creates a Secret from an encoded value, and loads it into environment variables in a Deployment:
 
@@ -101,12 +95,10 @@ kubectl apply -f labs/secrets/specs/configurable/secrets-plain
 
 Secrets are always surfaced as plaintext inside the container environment.
 
-<details>
-  <summary>They **may** be encrypted in the Kubernetes database</summary>
+They may be encrypted in the Kubernetes database
 
 But that is not the default setup. You can also integrate Kubernetes with third-party secure stores like Hashicorp Vault and Azure KeyVault (the [Secrets CSI driver](https://secrets-store-csi-driver.sigs.k8s.io) and [external-secrets](https://github.com/external-secrets/kubernetes-external-secrets) projects are popular options).
 
-</details><br/>
 
 Kubectl always shows Secrets encoded as base-64, but that's just a basic safety measure.
 
@@ -145,8 +137,6 @@ Play the config management team with access to secrets on your local disk:
 
 📋 Create secrets from the files in `labs/secrets/secrets`.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl create secret generic configurable-env-file --from-env-file ./labs/secrets/secrets/configurable.env 
@@ -154,7 +144,6 @@ kubectl create secret generic configurable-env-file --from-env-file ./labs/secre
 kubectl create secret generic configurable-secret-file --from-file ./labs/secrets/secrets/secret.json
 ```
 
-</details><br/>
 
 Now play the DevOps team, deploying the app using the secrets that already exist:
 
@@ -179,8 +168,7 @@ That isn't a great option - it makes for a multi-stage update process, with the 
 ___
 ## **EXTRA** Environment variable overrides
 
-<details>
-  <summary>Understanding the env and envFrom hierachy</summary>
+### Understanding the env and envFrom hierachy
 
 You'll often have multiple configuration sources in your Pod spec. Config quickly sprawls and it makes sense to centralize it as much as possible - if all your apps use the same logging config, then store that in one ConfigMap and use it in all the Deployments.
 
@@ -200,14 +188,12 @@ kubectl apply -f ./labs/secrets/specs/configurable/secrets-overlapping
 
 Browse and you'll see the precedence order in action.
 
-</details><br/>
 
 ___
 
 ## **EXTRA** Managing config updates
 
-<details>
-  <summary>Manually rolling out changes</summary>
+### Manually rolling out changes
 
 Some apps support **hot reloads** of configuration - they watch the config files, and if the contents change they automatically reload settings.
 
@@ -249,7 +235,6 @@ kubectl rollout restart deploy/configurable
 
 > Now the site will show the latest version
 
-</details><br/>
 
 ___
 
