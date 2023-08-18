@@ -58,20 +58,22 @@ These are hands-on resources to help you learn Azure Fundamentals.
 
 # Day 3
 ## Kubernetes and Azure
-- [Deploying to AKS with ACR](https://github.com/Developing-Scalable-Apps-using-Azure/Core-Kubernetes))
+- [Deploying to AKS with ACR](https://github.com/Developing-Scalable-Apps-using-Azure/Core-Kubernetes)
 
 ## Application Modelling
 
-- [ConfigMaps](labs/configmaps/README.md)
-- [Namespaces](labs/namespaces/README.md)
-- [Secrets](labs/secrets/README.md)
-- [PersistentVolumes](labs/persistentvolumes/README.md)
+- [ConfigMaps](labs/aks/configmaps/README.md)
+- [Secrets](labs/aks/secrets/README.md)
+- [PersistentVolumes](labs/aks/persistentvolumes/README.md)
+- [Namespaces](labs/aks/namespaces/README.md)
+
 
 ## Operating Kubernetes
 
-- [Production readiness](labs/productionizing/README.md)
-- [Monitoring](labs/monitoring/README.md)
-- [Logging](labs/logging/README.md)
+- [Production readiness](labs/aks/productionizing/README.md)
+- [Monitoring](labs/aks/monitoring/README.md)
+- [Logging](labs/aks/logging/README.md)
+- [Troubleshooting](labs/aks/troubleshooting/)
 
 
 # Day 4
@@ -80,5 +82,4 @@ These are hands-on resources to help you learn Azure Fundamentals.
 
 ## Real Kubernetes
 
-- [Troubleshooting](labs/troubleshooting/README.md)
 - [Hackathon!](hackathon/README.md)
