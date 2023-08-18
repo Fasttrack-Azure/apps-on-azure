@@ -313,6 +313,7 @@ Create an Azure AD app registration with secret value: w5R8Q~yEPejsgL1aJ4ubYVa5v
 ```
 
 2. Add support for Azure AD:
+
 ```
  <PackageReference Include="Microsoft.Identity.Web" Version="1.1.0" />
  <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.1.0" />
@@ -321,6 +322,7 @@ Create an Azure AD app registration with secret value: w5R8Q~yEPejsgL1aJ4ubYVa5v
 
 3. Update Program.cs
 Update the below builder services:
+
 ```
 builder.Services.AddControllersWithViews(options =>
 {
@@ -349,6 +351,7 @@ app.UseAuthentication();
 
 ## Step 6.
 Add _LoginPartial.cshtml to the views -> shared directory
+
 ```
 @using System.Security.Principal
 
@@ -374,6 +377,7 @@ Add _LoginPartial.cshtml to the views -> shared directory
 ```
 
 Add partial layout in the _Layout.cshtml file for sign in/out:
+
 ```
 	<partial name="_LoginPartial" />
 ```
