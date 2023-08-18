@@ -48,8 +48,6 @@ Before we can create the app we need an App Service Plan - which is an abstracti
 
 📋 Create an App Service Plan using the basic B1 SKU, and with one instance.
 
-<details>
-  <summary>Not sure how?</summary>
 
 This is fairly straightforward: 
 
@@ -57,7 +55,6 @@ This is fairly straightforward:
 az appservice plan create -g <your-name>-labs-appservice -n <your-name>-app-service-01 --sku B1 --number-of-workers 1
 ```
 
-</details><br/>
 
 Open the RG in the Portal. The only resource is the App Service Plan. Open that and you'll see an empty app list, and the scale up and scale out options (which are limited by the plan SKU).
 	
@@ -73,8 +70,6 @@ Under the Windows options we have dotnet:6. This would work for pretty much any 
 
 📋 Create web app in the service plan using the dotnet:6 runtime, and set for deployment from a local Git repository.
 
-<details>
-  <summary>Not sure how?</summary>
 
 Check the help text for a new web app:
 
@@ -88,7 +83,6 @@ You need to specify the runtime, deployment method and a unique DNS name for the
 az webapp create -g <your-name>-labs-appservice --plan <your-name>-app-service-01 --runtime 'dotnet:6' --name <dns-unique-app-name>
 ```
 
-</details><br/>
 
 Check the RG again in the Portal when your CLI command has completed.
 
