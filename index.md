@@ -59,10 +59,7 @@ These are hands-on resources to help you learn Azure Fundamentals.
 - [Deployments](labs/aks/deployments/README.md)
 
 
-
 # Day 3
-## Azure Kubernetes Service
-
 ## Kubernetes and Azure
 - [Deploying to AKS with ACR](https://github.com/Developing-Scalable-Apps-using-Azure/Core-Kubernetes))
 
@@ -80,9 +77,7 @@ These are hands-on resources to help you learn Azure Fundamentals.
 - [Logging](labs/logging/README.md)
 
 
-
 # Day 4
-
 ## Case Studies
 - [Case Studies](casestudies/README.md)
 
