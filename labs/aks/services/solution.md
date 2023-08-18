@@ -20,7 +20,7 @@ You can create a Service with no matching Pods by adding a label:
 There are no Pods which match because the whoami Pod doesn't have a `version` label:
 
 ```
-kubectl apply -f labs/services/solution/whoami-svc-zeromatches.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/solution/whoami-svc-zeromatches.yaml
 
 kubectl get endpoints whoami-zero-matches
 
@@ -37,7 +37,7 @@ kubectl exec sleep -- curl -v -m 5 http://whoami-zero-matches
 Many Pods can run with the same labels. Deploy a second whoami Pod with the same spec as the first - only the name needs to change:
 
 ```
-kubectl apply -f labs/services/solution/whoami-pod-2.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/solution/whoami-pod-2.yaml
 
 kubectl get po -o wide -l app=whoami
 

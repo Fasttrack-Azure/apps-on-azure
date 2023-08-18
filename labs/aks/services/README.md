@@ -10,8 +10,6 @@ Services and Pods are loosely-coupled: a Service finds target Pods using a [labe
 
 - [Service](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#service-v1-core)
 
-<details>
-  <summary>YAML overview</summary>
 
 Service definitions have the usual metadata. The spec needs to include the network ports and the label selector:
 
@@ -56,8 +54,6 @@ spec:
 
 > Labels are abitrary key-value pairs. `app`, `component` and `version` are typically used for application Pods.
 
-</details><br/>
-
 ## Run sample Pods
 
 Start by creating some simple Pods from definitions which contain labels:
@@ -66,21 +62,20 @@ Start by creating some simple Pods from definitions which contain labels:
 * [sleep.yaml](specs/pods/sleep.yaml)
 
 ```
-kubectl apply -f labs/services/specs/pods
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/specs/pods/whoami.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/specs/pods/sleep.yaml
+
 ```
 
 > You can work with multiple objects and deploy multiple YAML manifests with Kubectl
 
 📋 Check the status for all Pods, printing all the IP addresses and labels.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl get pods -o wide --show-labels
 ```
 
-</details><br/>
 
 The Pod name has no affect on networking, Pods can't find each other by name:
 
@@ -98,11 +93,8 @@ Kubernetes provides different types of Service for internal and external access 
 
 📋 Deploy the Service from `labs/services/specs/services/whoami-clusterip.yaml` and print its details.
 
-<details>
-  <summary>Not sure how?</summary>
-
 ```
-kubectl apply -f labs/services/specs/services/whoami-clusterip.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/specs/services/whoami-clusterip.yaml
 ```
 
 Print the details:
@@ -114,8 +106,6 @@ kubectl describe svc whoami
 ```
 
 > The `get` and `describe` commands are the same for all objects; Services have the alias `svc`
-
-</details><br/>
 
 The Service has its own IP address, and that is static for the life of the Service.
 
@@ -137,8 +127,6 @@ kubectl exec sleep -- curl -s http://whoami
 
 📋 Recreate the whoami Pod and the replacement will have a new IP address - but service resolution with DNS still works. 
 
-<details>
-  <summary>Not sure how?</summary>
 
 Check the current IP address then delete the Pod:
 
@@ -153,12 +141,12 @@ kubectl delete pods -l app=whoami
 Create a replacement Pod and check its IP address:
 
 ```
-kubectl apply -f labs/services/specs/pods
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/specs/pods/whoami.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/specs/pods/sleep.yaml
+
 
 kubectl get pods -o wide -l app=whoami
 ```
-
-</details><br/>
 
 The Service IP address doesn't changed, so if clients cache that IP they'll still work. Now the Service routes traffic to the new Pod:
 
@@ -175,9 +163,6 @@ There are two types of Service which can be accessed outside of the cluster: [Lo
 They both listen for traffic coming into the cluster and route it to Pods, but they work in different ways. LoadBalancers are easier to work with, but not every Kubernetes cluster supports them.
 
 > In this course we'll deploy both LoadBalancers and NodePorts for all our sample apps so you can follow along with your cluster.
-
-<details>
-  <summary>ℹ Here's why some clusters don't support LoadBalancers</summary>
 
 - LoadBalancer Services integrate with the platform they're running on to get a real IP address. In a managed Kubernetes service in the cloud you'll get a unique public IP address for every Service, integrated with a cloud load balancer to direct traffic to your nodes. In Docker Desktop the IP address will be `localhost`; in k3s it will be a local network address.
 
@@ -196,8 +181,6 @@ Bare-metal | ❌  |  ✔
 
 > If you don't have LoadBalancer support you can add it with [MetalLB](https://metallb.universe.tf/), but that's not in scope for this course :)
 
-</details><br/>
-
 ## Deploy an external Service
 
 There are two Service definitions to make the whoami app available outside the cluster:
@@ -208,19 +191,14 @@ There are two Service definitions to make the whoami app available outside the c
 You can deploy both:
 
 ```
-kubectl apply -f labs/services/specs/services/whoami-nodeport.yaml -f labs/services/specs/services/whoami-loadbalancer.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/specs/services/whoami-nodeport.yaml -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/services/specs/services/whoami-loadbalancer.yaml
 ```
 
 📋 Print the details for the services - both have the label `app=whoami`.
 
-<details>
-  <summary>Not sure how?</summary>
-
 ```
 kubectl get svc -l app=whoami
 ```
-
-</details><br/>
 
 > If your cluster doesn't have LoadBalancer support, the `EXTERNAL-IP` field will stay at `<pending>` forever
 

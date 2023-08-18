@@ -9,9 +9,6 @@ Pod specs are very simple. The minimal YAML needs some metadata, and the name of
 
 - [Pod](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#pod-v1-core)
 
-<details>
-  <summary>YAML overview</summary>
-
 This is as simple as it gets for a Pod:
 
 ```
@@ -40,7 +37,13 @@ The format of the `spec` field is different for every object type. For Pods, thi
 
 > Indentation is important in YAML - object fields are nested with spaces. 
 
-</details><br/>
+## Create your namespace and set current context
+```
+kubectl create ns ns-<your-name>
+
+kubectl config set-context --current --namespace ns-<your-name>
+
+```
 
 ## Run a simple Pod
 
@@ -51,13 +54,13 @@ Kubectl is the tool for managing objects. You create any object from YAML using 
 Deploy the app from your local copy of the course repo:
 
 ```
-kubectl apply -f labs/pods/specs/whoami-pod.yaml
+kubectl apply -f labs/pods/specs/whoami-pod.yaml 
 ```
 
 Or the path to the YAML file can be a web address:
 
 ```
-kubectl apply -f https://kubernetes.courselabs.co/labs/pods/specs/whoami-pod.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/pods/specs/whoami-pod.yaml 
 ```
 
 > The output shows you that nothing has changed. Kubernetes works on **desired state** deployment
@@ -81,13 +84,10 @@ In a production cluster the Pod could be running on any node. You manage it usin
 
 📋 Print the container logs.
 
-<details>
-  <summary>Not sure how?</summary>
 
 ```
 kubectl logs whoami
 ```
-</details><br/>
 
 Connect to the container inside the Pod:
 
@@ -104,15 +104,11 @@ Let's try another app:
 
 📋 Deploy the new app from `labs/pods/specs/sleep-pod.yaml` and check it is running.
 
-<details>
-  <summary>Not sure how?</summary>
-
 ```
-kubectl apply -f labs/pods/specs/sleep-pod.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/pods/specs/sleep-pod.yaml
 
 kubectl get pods
 ```
-</details><br/>
 
 This Pod container does have a shell, and it has some useful tools installed.
 
@@ -149,13 +145,9 @@ exit
 
 📋 Print the IP address of the original whoami Pod.
 
-<details>
-  <summary>Not sure how?</summary>
-
 ```
 kubectl get pods -o wide whoami
 ```
-</details><br/>
 
 > That's the internal IP address of the Pod - any other Pod in the cluster can connect on that address
 

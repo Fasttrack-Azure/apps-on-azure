@@ -16,7 +16,7 @@ spec:
 Deploy it in the usual way with Kubectl:
 
 ```
-kubectl apply -f labs/pods/solution/lab.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/pods/solution/lab.yaml
 ```
 
 Now watch the Pod status:
@@ -62,7 +62,7 @@ kubectl delete pod sleep-lab
 Or by using the delete command with your YAML file:
 
 ```
-kubectl delete -f labs/pods/solution/lab.yaml
+kubectl delete -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/pods/solution/lab.yaml
 ```
 
 > Back to the [exercises](README.md).

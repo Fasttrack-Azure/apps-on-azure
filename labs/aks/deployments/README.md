@@ -10,8 +10,6 @@ Deployments use a template to create Pods, and a label selector to identify the 
 
 - [Deployment](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.20/#deployment-v1-apps)
 
-<details>
-  <summary>YAML overview</summary>
 
 Deployments definitions have the usual metadata. 
 
@@ -44,8 +42,6 @@ The labels in the Pod metadata must include the labels in the selector for the D
 * `spec.template.metadata.labels` - labels to apply to Pods, must include those in the selector
 * `spec.template.spec` - full Pod spec
 
-</details><br/>
-
 ## Create a Deployment for the whoami app
 
 Your cluster should be empty if you cleared down the last lab. This spec describes a Deployment to create a whoami Pod:
@@ -55,7 +51,7 @@ Your cluster should be empty if you cleared down the last lab. This spec describ
 Create the Deployment and it will create the Pod:
 
 ```
-kubectl apply -f labs/deployments/specs/deployments/whoami-v1.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/deployments/specs/deployments/whoami-v1.yaml
 
 kubectl get pods -l app=whoami 
 ```
@@ -66,9 +62,6 @@ Deployments are first-class objects, you work with them in Kubectl in the usual 
 
 📋 Print the details of the Deployment.
 
-<details>
-  <summary>Not sure how?</summary>
-
 ```
 kubectl get deployments
 
@@ -76,8 +69,6 @@ kubectl get deployments -o wide
 
 kubectl describe deploy whoami
 ```
-
-</details><br/>
 
 > The events talk about another object called a ReplicaSet - we'll get to that soon.
 
@@ -107,16 +98,11 @@ So it's better to make the changes **declaratively in YAML**.
 
 📋 Update the Deployment using that spec and check the Pods again.
 
-<details>
-  <summary>Not sure how?</summary>
-
 ```
-kubectl apply -f labs/deployments/specs/deployments/whoami-v1-scale.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/deployments/specs/deployments/whoami-v1-scale.yaml 
 
 kubectl get pods -l app=whoami
 ```
-
-</details><br/>
 
 > The Deployment removes one Pod, because the current state (3 replicas) does not match the desired state in the YAML (2 replicas)
 
@@ -141,15 +127,12 @@ The Pod spec in the Deployment template applies a label.
 
 📋 Print details - including IP address and labels - for all Pods with the label `app=whoami`.
 
-<details>
-  <summary>Not sure how?</summary>
- the app=whoami label:
+
+Get all pos with the app=whoami label:
 
 ```
 kubectl get pods -o wide --show-labels -l app=whoami
 ```
-
-</details><br/>
 
 The label selector in these Services matches that label too:
 
@@ -159,7 +142,7 @@ The label selector in these Services matches that label too:
 Deploy the Services and check the Pod IP endpoints:
 
 ```
-kubectl apply -f labs/deployments/specs/services/
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/deployments/specs/services/whoami-loadbalancer.yaml
 
 kubectl get endpoints whoami-np whoami-lb
 ```
@@ -185,7 +168,7 @@ Application updates usually mean a change to the Pod spec - a new container imag
 kubectl get po -l app=whoami --watch
 
 # apply the change:
-kubectl apply -f labs/deployments/specs/deployments/whoami-v2.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/deployments/specs/deployments/whoami-v2.yaml
 ```
 
 Try the app again - you'll see a smaller output and if you repeat your requests are load-balanced.
@@ -217,9 +200,6 @@ Then make your update to switch traffic to the v2 Pods without any changes to De
 ___
 ## **EXTRA** Understanding ReplicaSets
 
-<details>
-  <summary>Deployments use another object to manage Pods :) </summary>
-
 Did you notice a pattern in the Pod names in the rollback exercise? When you rolled back your update, you might have seen that the new Pods had the same prefix as the previous set of Pods.
 
 Deployments create the Pod names but they're not totally random - the pattern is `[deployment-name]-[template-hash]-[random-suffix]`. You can update a Deployment spec without changing the Pod spec (e.g. to set replicas) and that doesn't cause Pod replacement.
@@ -242,8 +222,6 @@ kubectl apply -f labs/deployments/specs/deployments/whoami-v2.yaml
 ```
 
 > You'll see the rolling update in action - the new ReplicaSet is scaled up incrementally, while the old one is scaled down
-
-</details><br/>
 
 ___
 ## Cleanup

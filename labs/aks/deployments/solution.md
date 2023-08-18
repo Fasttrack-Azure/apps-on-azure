@@ -7,7 +7,7 @@ For blue-green updates you need two Deployment objects - each managing Pods for 
 Kubectl supports this too, using `---` to separate objects.
 
 ```
-kubectl apply -f labs/deployments/solution/whoami-deployments.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/deployments/solution/whoami-deployments.yaml
 
 kubectl get pods -l app=whoami-lab,version=v1
 
@@ -25,7 +25,7 @@ The blue-green switch is done by changing the label selector for the Service.
 Deploy and test v1:
 
 ```
-kubectl apply -f labs/deployments/solution/whoami-service-v1.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/deployments/solution/whoami-service-v1.yaml
 
 kubectl get endpoints whoami-lab-np whoami-lab-lb
 
@@ -39,7 +39,7 @@ curl localhost:8020 # OR curl localhost:30020
 Kubernetes deploys this as an update to the existing Services, so the IP addresses don't change, only the endpoints the Services find:
 
 ```
-kubectl apply -f labs/deployments/solution/whoami-service-v2.yaml
+kubectl apply -f https://fasttrack-azure.github.io/Cloud-For-Partners/labs/aks/deployments/solution/whoami-service-v2.yaml
 
 kubectl get endpoints whoami-lab-np whoami-lab-lb
 
