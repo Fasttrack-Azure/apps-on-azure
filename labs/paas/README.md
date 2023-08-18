@@ -302,6 +302,7 @@ private readonly IDistributedCache _cache;
 Create an Azure AD app registration with secret value: w5R8Q~yEPejsgL1aJ4ubYVa5v0.Y-jWOHHdXqcJC
 
 1. In appsettings.json:
+```
      "AzureAd": {
         "Instance": "https://login.microsoftonline.com/",
         "Domain": "datacouchtrainingoutlook.onmicrosoft.com",
@@ -309,7 +310,7 @@ Create an Azure AD app registration with secret value: w5R8Q~yEPejsgL1aJ4ubYVa5v
         "ClientId": "9c86c446-a50d-49ba-8108-e4d0364a8d44",
         "CallbackPath": "/signin-oidc"
       }
-
+```
 2. Add support for Azure AD
 ```
  <PackageReference Include="Microsoft.Identity.Web" Version="1.1.0" />
