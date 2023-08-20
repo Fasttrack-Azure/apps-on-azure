@@ -22,8 +22,11 @@ These are hands-on resources to help you learn Azure Fundamentals.
  
 https://training.datacouch.io/pluralsight/#/
 
+```
 username: instructor-03
 password: password
+```
+
 
 ### Azure Accounts and Lab VMs Access
  
@@ -32,7 +35,7 @@ Here is the azure accounts and lab access details google sheet for participants:
  
 https://docs.google.com/spreadsheets/d/1GjxNSynmfOUjy6-PAMv1kgloAPxK7cjoAPDP2haNvcc/edit?usp=sharing
 
-Note: Machines will be up 1 hour before the training start and it will automatically shut down 2 hours after the class end time.
+> Note: Machines will be up 1 hour before the training start and it will automatically shut down 2 hours after the class end time.
 
 Here is the Account Setup guide
 
