@@ -11,7 +11,7 @@ These are hands-on resources to help you learn Azure Fundamentals.
     - [Extentions](https://code.visualstudio.com/docs/editor/extension-marketplace) - c#, Azure Tools, Kubernetes, Helm, Docker, Git Lens
 - _Software_
     - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
-    - [.NET SDK 6.x (LTS)](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+    - [.NET SDK 7.0 (LTS)](https://dotnet.microsoft.com/en-us/download)
     - [Docker Desktop](https://www.docker.com/products/docker-desktop)
     - [Helm](https://helm.sh/docs/intro/install/) 
     - [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
