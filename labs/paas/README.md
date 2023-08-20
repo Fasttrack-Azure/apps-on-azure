@@ -142,14 +142,18 @@ az sql db create --resource-group $resourceGroup --server $server --name $databa
 
 4. Publish this project to your Azure SQL instance
 5. Create application users and assign permissions
+
 ```
 CREATE USER applicationUser with PASSWORD = 'App1234567'
 GRANT select, insert, update, delete to applicationUser
 ```
 
+
 ## Step 3.
 1. Create a new .NET 7 core MVC project 
 2. Install the nuget packages by pasting the below snippet in <your-web-app-name>.csproj file
+
+
 ```
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
@@ -167,6 +171,8 @@ GRANT select, insert, update, delete to applicationUser
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
   </ItemGroup>
   ```
+
+
 3. Add an "images" folder in wwwroot. Upload - [cookies image](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/blob/master/InternationalBakers/wwwroot/images/cookie.jpg)
 
 4. Update the home page to - [index.html](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/blob/master/InternationalBakers/Views/Home/Index.cshtml)
@@ -174,9 +180,12 @@ GRANT select, insert, update, delete to applicationUser
 4. Scaffold the DB context - run the below command in the visual studio package manager console:
 <img width="753" alt="image" src="https://user-images.githubusercontent.com/11691661/224944023-e2f3aa73-f45d-420d-82fa-c524eb320719.png">
 
+
 ```
 Scaffold-DbContext "<your conn string>" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir "Data" -DataAnnotations
 ```
+
+
 5. Create new controllers using Entity Framework with models and views
 <img width="678" alt="image" src="https://user-images.githubusercontent.com/11691661/224944171-aa3597ea-ac5f-41bd-8ced-f8182d4bf867.png">
 
@@ -187,6 +196,7 @@ Select the model (Cookie) and data context class from the dropdown
 6. Dependency inject the connection string by replacing the OnConfiguring method with the below code snippet:
 
 In DBContext.cs
+
 ```
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -199,20 +209,30 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             optionsBuilder.UseSqlServer(connectionString);
         }
 ```
+
+
 In Program.cs
+
+
 ```
 var connectionString = builder.Configuration.GetConnectionString("ibdb");
 builder.Services.AddDbContext<<your-db-context-class>>(x => x.UseSqlServer(connectionString));
 ```
+
+
 <img width="952" alt="image" src="https://user-images.githubusercontent.com/11691661/225085885-0e66713a-2ee9-4107-a6c8-9b18dba7c802.png">
 	
 
 In appsettings.json
+
+
 ```
 "ConnectionStrings": {
 "ibdb": "Server=tcp:sb-azuresql-server-286930812.database.windows.net,1433;Initial Catalog=<your-database-name>;Persist Security Info=False;User ID=azureuser;Password=Admin@1234567;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
   }
 ```
+
+
 <img width="1172" alt="image" src="https://user-images.githubusercontent.com/11691661/225085998-a861f9e6-a9c2-49c4-ad52-c1a36b9d6712.png">
 
 
