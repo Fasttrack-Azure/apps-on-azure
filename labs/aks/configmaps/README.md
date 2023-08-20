@@ -90,6 +90,12 @@ Volumes are defined at the Pod level - they are storage units which are part of 
 
 ## Run the configurable demo app
 
+### Swith the context to minikube
+
+```
+ kubectl config use-context minikube
+```
+
 The demo app for this lab has the logic to merge config from multiple sources. 
 
 Defaults are built into the `appsettings.json` file inside the Docker image - run a Pod with no config applied to see the defaults:
