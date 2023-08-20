@@ -1,9 +1,29 @@
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
+# kind: StorageClass
+# apiVersion: storage.k8s.io/v1
+# metadata:
+#   name: sc-postgres-db-sc
+# provisioner: kubernetes.io/azure-file
+# mountOptions:
+#   - dir_mode=0777
+#   - file_mode=0777
+#   - uid=1000
+#   - gid=1001
+#   - mfsymlinks
+#   - cache=strict
+# parameters:
+#   skuName: Standard_LRS
+
+apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: sc-postgres-db
-  namespace: 
-provisioner: kubernetes.io/azure-disk
-parameters:
-  skuName: Standard_LRS
-  kind: Managed
+  name: pv-azurefile
+spec:
+  accessModes:
+  - ReadWriteMany
+  azureFile:
+    secretName: azure-storage-account-accountname-secret
+    secretNamespace: default
+    shareName: test
+  capacity:
+    storage: 10Gi
+  persistentVolumeReclaimPolicy: Retain

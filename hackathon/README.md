@@ -16,6 +16,11 @@ And it will give you an app that you modelled yourself, which you can use as a r
 
 > ℹ There are several parts to the hackathon - you're not expected to complete them all. In some classes we have a whole day for this, in others just a few hours. Get as far as you can in the time, it's all great experience.
 
+### Remember to use minikube cluster for this Hackathon:
+
+```
+ kubectl config use-context minikube
+```
 ## Part 1 - Welcome to Widgetario
 
 Widgetario is a company which sells gadgets. They want to run their public web app on Kubernetes. 
@@ -147,7 +152,7 @@ kubectl rollout restart deploy/products-api deploy/stock-api
 
 </details><br/>
 
-## Part 4 - Ingress
+## Part 4 - Ingress (Optional)
 
 We're nearly there, but all these non-standard ports are no good. We'd like to get some proper DNS names set up, so we can publish the web app and the products API on standard HTTP ports:
 

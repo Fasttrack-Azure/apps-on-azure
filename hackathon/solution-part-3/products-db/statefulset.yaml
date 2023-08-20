@@ -38,7 +38,6 @@ spec:
         app: widgetario
     spec:
       accessModes: 
-       - StorageClassName: sc-postgres-db
        - ReadWriteOnce
       resources:
         requests:
