@@ -107,7 +107,7 @@ az account set -s $subscription # ...or use 'az login'
 # Variable block
 let "randomIdentifier=$RANDOM*$RANDOM"
 location="East US"
-resourceGroup="Sid-RG-01"
+resourceGroup="<your-name>-labs-appservice"
 tag="create-and-configure-database"
 server="sb-azuresql-server-$randomIdentifier"
 database="sbazuresqldb$randomIdentifier"
@@ -131,10 +131,13 @@ az sql db create --resource-group $resourceGroup --server $server --name $databa
 ```
 
 1. Provision a Basic tier Azure Database instance on the Azure Portal
-2. Create a SQL database project 
-3. Add the required tables and post-deployment scripts to this:
+2. Create a New SQL Database Project to youre solution in Visual Studio IDE. Add two new folders - Scripts and Tables
+3. Add a post-deployment scripts to the Scripts folder:
 
 - [Scripts](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/tree/master/InternationalCookies.DataBase/Scripts)
+
+4. Add the required tables to the Tables folder:
+
 - [Tables](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/tree/master/InternationalCookies.DataBase/Tables)
 
 4. Publish this project to your Azure SQL instance
@@ -145,21 +148,24 @@ GRANT select, insert, update, delete to applicationUser
 ```
 
 ## Step 3.
-1. Create a new .NET 6 core MVC project 
+1. Create a new .NET 7 core MVC project 
 2. Install the nuget packages by pasting the below snippet in <your-web-app-name>.csproj file
 ```
- 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.10" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.9" />
+  </ItemGroup>
   ```
 3. Add an "images" folder in wwwroot. Upload - [cookies image](https://github.com/Developing-Scalable-Apps-using-Azure/International-Bakers/blob/master/InternationalBakers/wwwroot/images/cookie.jpg)
 
@@ -176,7 +182,7 @@ Scaffold-DbContext "<your conn string>" Microsoft.EntityFrameworkCore.SqlServer 
 
 <img width="952" alt="image" src="https://user-images.githubusercontent.com/11691661/224944344-7076a110-7dad-434b-99d1-8445e277911e.png">
 
-Select the model and data context xlass from the dropdown
+Select the model (Cookie) and data context class from the dropdown
 
 6. Dependency inject the connection string by replacing the OnConfiguring method with the below code snippet:
 
