@@ -1,6 +1,6 @@
-Welcome to the Cloud for Partners labs.
+Welcome to the Apps on Azure labs.
 
-These are hands-on resources to help you learn Azure Fundamentals.
+These are hands-on resources to help you learn building scalable apps on Azure.
 
 ## Pre-Requisites
 - _For [Azure Portal](https://portal.azure.com) Access_
