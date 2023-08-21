@@ -4,7 +4,7 @@ These are hands-on resources to help you learn Azure Fundamentals.
 
 ## Pre-Requisites
 - _For [Azure Portal](https://portal.azure.com) Access_
-    - Find your [Azure Credentials](https://docs.google.com/spreadsheets/d/154uyiBn-v6GGdCuf3qvQ28maXLrY80CQMu3jFqCP684/edit?usp=sharing)
+    - Find your [Azure Credentials Lab VM Access](https://docs.google.com/spreadsheets/d/1GjxNSynmfOUjy6-PAMv1kgloAPxK7cjoAPDP2haNvcc/edit?usp=sharing)
     - Open [Account Setup Guide](https://docs.google.com/document/d/1oJkt2yoh9kCQBzdKHfNGq_xTVzslvAxsk6G0YFbdM5s/edit?usp=sharing)
 - _Optional_
     - Install [Visual Studio Code](https://code.visualstudio.com) (free - Windows, macOS and Linux) to browse the repo and documentation
@@ -22,19 +22,10 @@ These are hands-on resources to help you learn Azure Fundamentals.
  
 https://training.datacouch.io/pluralsight/#/ 
 
-
-### Azure Accounts and Lab VMs Access
- 
-Here is the azure accounts and lab access details google sheet for participants:
-
- 
-https://docs.google.com/spreadsheets/d/1GjxNSynmfOUjy6-PAMv1kgloAPxK7cjoAPDP2haNvcc/edit?usp=sharing 
+> Clone the Courseware from https://github.com/Fasttrack-Azure/apps-on-azure.git 
 
 > Note: Machines will be up 1 hour before the training start and it will automatically shut down 2 hours after the class end time.
 
-Here is the Account Setup guide
-
-https://docs.google.com/document/d/1oJkt2yoh9kCQBzdKHfNGq_xTVzslvAxsk6G0YFbdM5s/edit?usp=sharing 
 
 # Day 1
 
