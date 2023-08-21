@@ -28,7 +28,7 @@ namespace InternationalBakers.Controllers
         public async Task<IActionResult> Index()
         {
             List<Cookie> cookies;
-            var cachedCookies = _cache.GetString("cookieList");
+            var cachedCookies = _cache.GetString("cookiesList");
 
             if (!string.IsNullOrEmpty(cachedCookies))
             {
