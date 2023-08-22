@@ -333,7 +333,7 @@ Create an Azure AD app registration with secret value: w5R8Q~yEPejsgL1aJ4ubYVa5v
         "Instance": "https://login.microsoftonline.com/",
         "Domain": "datacouchtrainingoutlook.onmicrosoft.com",
         "TenantId": "87b7955d-4a78-474a-8a5c-6a5aaebe4ef2",
-        "ClientId": "9c86c446-a50d-49ba-8108-e4d0364a8d44",
+        "ClientId": "d925f687-b7c8-49c4-bc17-13dab709e78c",
         "CallbackPath": "/signin-oidc"
       }
 ```
