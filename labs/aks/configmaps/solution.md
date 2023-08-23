@@ -21,7 +21,7 @@ You'll need to delete the literal ConfigMap to try this - that's why desired sta
 ```
 kubectl delete configmap configurable-env-lab
 
-kubectl create configmap configurable-env-lab --from-env-file=labs/configmaps/solution/configurable.env
+kubectl create configmap configurable-env-lab --from-env-file=labs/aks/configmaps/solution/configurable.env
 
 kubectl describe cm configurable-env-lab
 ```
@@ -31,7 +31,7 @@ kubectl describe cm configurable-env-lab
 - [override.json](solution/override.json) has the required JSON settings. The filename is the same as the expected filename the app will read.
 
 ```
-kubectl create configmap configurable-override-lab --from-file=labs/configmaps/solution/override.json
+kubectl create configmap configurable-override-lab --from-file=labs/aks/configmaps/solution/override.json
 
 kubectl describe cm configurable-override-lab
 ```
@@ -41,7 +41,7 @@ kubectl describe cm configurable-override-lab
 - [deployment-lab.yaml](specs/configurable/lab/deployment-lab.yaml) expects the same ConfigMap names we've used, so we can deploy:
 
 ```
-kubectl apply -f labs/configmaps/specs/configurable/lab/
+kubectl apply -f labs/aks/configmaps/specs/configurable/lab/
 ```
 
 > Browse to your Service and you should see the configured settings from the expected sources
