@@ -50,7 +50,7 @@ In the container environment, Secret values are presented as plain text.
 Start by deploying the configurable app using ConfigMaps:
 
 ```
-kubectl apply -f labs/secrets/specs/configurable
+kubectl apply -f labs/aks/secrets/specs/configurable
 ```
 
 📋 Check the details of a ConfigMap and you can see all the values in plain text.
@@ -71,7 +71,7 @@ This YAML creates a Secret from an encoded value, and loads it into environment 
 - [deployment-env.yaml](specs/configurable/secrets-encoded/deployment-env.yaml) - loads the Secret into environment variables
 
 ```
-kubectl apply -f labs/secrets/specs/configurable/secrets-encoded
+kubectl apply -f labs/aks/secrets/specs/configurable/secrets-encoded
 ```
 
 > Browse to the website and you can see the plain-text value for `Configurable:Environment`
@@ -86,7 +86,7 @@ If you want to store sensitive data in plaintext YAML, you can do that instead. 
 - [deployment-env.yaml](specs/configurable/secrets-plain/deployment-env.yaml) - loads the Secret into environment variables
 
 ```
-kubectl apply -f labs/secrets/specs/configurable/secrets-plain
+kubectl apply -f labs/aks/secrets/specs/configurable/secrets-plain
 ```
 
 > Refresh the site and you'll see the updated config value
@@ -139,9 +139,9 @@ Play the config management team with access to secrets on your local disk:
 
 
 ```
-kubectl create secret generic configurable-env-file --from-env-file ./labs/secrets/secrets/configurable.env 
+kubectl create secret generic configurable-env-file --from-env-file ./labs/aks/secrets/secrets/configurable.env 
 
-kubectl create secret generic configurable-secret-file --from-file ./labs/secrets/secrets/secret.json
+kubectl create secret generic configurable-secret-file --from-file ./labs/aks/secrets/secrets/secret.json
 ```
 
 
@@ -150,7 +150,7 @@ Now play the DevOps team, deploying the app using the secrets that already exist
 - [deployment.yaml](specs/configurable/secrets-file/deployment.yaml) - references those Secrets
 
 ```
-kubectl apply -f ./labs/secrets/specs/configurable/secrets-file
+kubectl apply -f ./labs/aks/secrets/specs/configurable/secrets-file
 ```
 
 > Browse to the app and now you can see another config source - the `secret.json` file
@@ -183,7 +183,7 @@ If the same key appears in `env` and `envFrom`, this is the order of precedence:
 - [deployment-env.yaml](specs/configurable/secrets-overlapping/deployment-env.yaml)
 
 ```
-kubectl apply -f ./labs/secrets/specs/configurable/secrets-overlapping
+kubectl apply -f ./labs/aks/secrets/specs/configurable/secrets-overlapping
 ```
 
 Browse and you'll see the precedence order in action.
@@ -208,7 +208,7 @@ Kubernetes caches the contents so it will take a few minutes for all the nodes t
 Deploy the web app with a new setting:
 
 ```
-kubectl apply -f labs/secrets/specs/configurable/secrets-update
+kubectl apply -f labs/aks/secrets/specs/configurable/secrets-update
 ```
 
 > Check the value in your web app - in the secrets.json section you should see `Configurable__ConfigVersion=v1`
@@ -216,7 +216,7 @@ kubectl apply -f labs/secrets/specs/configurable/secrets-update
 Now deploy the updated config in [v1-update](specs/configurable/secrets-update/v1-update/secret-plain.yaml):
 
 ```
-kubectl apply -f labs/secrets/specs/configurable/secrets-update/v1-update
+kubectl apply -f labs/aks/secrets/specs/configurable/secrets-update/v1-update
 ```
 
 Refresh the app and it will still show the old value. The time taken to update depends on the Kubernetes [Secret cache policy](https://kubernetes.io/docs/concepts/configuration/secret/#mounted-secrets-are-updated-automatically) **and** on any caching the app does.
