@@ -7,11 +7,11 @@ az login
 
 az account set --subscription 79080195-8aac-4282-8f0d-5910cb4209c0
 
-az aks get-credentials --resource-group Sid-RG-01 --name aksdelta01
+az aks get-credentials --resource-group RG-SB-LAB-01 --name akssb01
 
 ```
 
-## Using Docker Desktop - Set kubernetes context
+## Only if you're using Docker Desktop - Set kubernetes context
 ```
  kubectl config use-context docker-desktop
 ```
