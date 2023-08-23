@@ -54,7 +54,7 @@ The demo app for this lab is a Pi-calculating website, which is fronted by an Ng
 Deploy and try the app:
 
 ```
-kubectl apply -f labs/persistentvolumes/specs/pi
+kubectl apply -f labs/aks/persistentvolumes/specs/pi
 ```
 
 > Browse to http://localhost:30010/pi?dp=30000 or http://localhost:8010/pi?dp=30000 you'll see it takes over a second to calculate the response and send it
@@ -89,7 +89,7 @@ You can use it for data which is not permanent, but which you'd like to survive 
 This is a change to the Pod spec, so you'll get a new Pod with a new empty directory volume:
 
 ```
-kubectl apply -f labs/persistentvolumes/specs/caching-proxy-emptydir
+kubectl apply -f labs/aks/persistentvolumes/specs/caching-proxy-emptydir
 
 kubectl wait --for=condition=Ready pod -l app=pi-proxy,storage=emptydir
 ```
@@ -133,7 +133,7 @@ You can create a PersistentVolumeClaim with a named StorageClass, or omit the cl
 - [caching-proxy-pvc/pvc.yaml](specs/caching-proxy-pvc/pvc.yaml) requests 100MB of storage, which a single node can mount for read-write access
 
 ```
-kubectl apply -f labs/persistentvolumes/specs/caching-proxy-pvc/pvc.yaml
+kubectl apply -f labs/aks/persistentvolumes/specs/caching-proxy-pvc/pvc.yaml
 ```
 
 Each StorageClass has a provisioner which can create the storage unit on-demand.
@@ -155,7 +155,7 @@ kubectl get persistentvolumes
 This [Deployment spec](specs/caching-proxy-pvc/nginx.yaml) updates the Nginx proxy to use the PVC:
 
 ```
-kubectl apply -f labs/persistentvolumes/specs/caching-proxy-pvc/
+kubectl apply -f labs/aks/persistentvolumes/specs/caching-proxy-pvc/
 
 kubectl wait --for=condition=Ready pod -l app=pi-proxy,storage=pvc
 

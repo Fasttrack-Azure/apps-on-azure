@@ -9,7 +9,7 @@ To get access to the node's disk, create a new Pod with a `HostPath` volume targ
 Deploy the Pod:
 
 ```
-kubectl apply -f labs/persistentvolumes/solution
+kubectl apply -f labs/aks/persistentvolumes/solution
 ```
 
 The Pod container mounts the root of the node's disk to `/node-root` inside the container, and it runs as root.
