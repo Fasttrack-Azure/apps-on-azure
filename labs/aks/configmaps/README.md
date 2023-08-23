@@ -134,7 +134,7 @@ The Pod spec is where you apply configuration:
 
 
 ```
-kubectl apply -f labs/configmaps/specs/configurable/
+kubectl apply -f labs/aks/configmaps/specs/configurable/
 ```
 
 
@@ -163,7 +163,7 @@ Environment variables in Pod specs are fine for single settings like feature fla
 - [deployment-env.yaml](specs/configurable/config-env/deployment-env.yaml) - a Deployment which loads the ConfigMap into environment variables
 
 ```
-kubectl apply -f labs/configmaps/specs/configurable/config-env/
+kubectl apply -f labs/aks/configmaps/specs/configurable/config-env/
 ```
 
 > This creates a new ConfigMap and updates the Deployment. Remember which object the Deployment uses to manage Pods?
@@ -190,7 +190,7 @@ The demo app can use JSON configuration as well as environment variables, and it
 - [deployment-json.yaml](specs/configurable/config-json/deployment-json.yaml) loads the JSON as a volume mount **and** loads environment variables
 
 ```
-kubectl apply -f labs/configmaps/specs/configurable/config-json/
+kubectl apply -f labs/aks/configmaps/specs/configurable/config-json/
 ```
 
 > Refresh the web app and you'll see new settings coming from the `config/override.json` file
