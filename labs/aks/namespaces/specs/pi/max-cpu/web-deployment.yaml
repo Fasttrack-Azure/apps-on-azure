@@ -22,8 +22,8 @@ spec:
               name: http
           resources:
             requests:
-              cpu: 3500m
+              cpu: 3000m
               memory: 750Mi
             limits:
-              cpu: 4500m
+              cpu: 3500m
               memory: 1000Mi

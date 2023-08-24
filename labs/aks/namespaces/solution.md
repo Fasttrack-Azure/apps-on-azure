@@ -8,13 +8,13 @@ My solution creates a new namespace for Nginx to run in, and uses a FQDN in the 
 Deploy the namespace first:
 
 ```
-kubectl apply -f labs/namespaces/solution/01-namespace.yaml
+kubectl apply -f labs/aks/namespaces/solution/01-namespace.yaml
 ```
 
 Then the original proxy setup:
 
 ```
-kubectl apply -n front-end -f labs/namespaces/specs/reverse-proxy
+kubectl apply -n front-end -f labs/aks/namespaces/specs/reverse-proxy
 ```
 
 > Browse to http://localhost:30040 - you'll get an error from your browser
@@ -30,7 +30,7 @@ kubectl  logs -n front-end -l app=pi-proxy
 Update the ConfigMap with the correct FQDN, using the app in the existing `pi` namespace, and then you'll need to rollout new Pods to pick up the config change:
 
 ```
-kubectl apply -f labs/namespaces/solution/nginx-configMap.yaml
+kubectl apply -f labs/aks/namespaces/solution/nginx-configMap.yaml
 
 kubectl rollout restart -n front-end deploy/pi-proxy
 ```

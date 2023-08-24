@@ -109,13 +109,13 @@ Object specs can include the target namespace in the YAML. If it is not specifie
 
 - [sleep-pod.yaml](specs/sleep-pod.yaml) defines a Pod with no namespace, so Kubectl decides the namespace - using the default for the context, or an explicit namespace
 
-📋 Deploy the Pod spec in `labs/namespaces/specs/sleep-pod.yaml` to the default namespace and the system namespace.
+📋 Deploy the Pod spec in `labs/aks/namespaces/specs/sleep-pod.yaml` to the default namespace and the system namespace.
 
 
 ```
-kubectl apply -f labs/namespaces/specs/sleep-pod.yaml -n default
+kubectl apply -f labs/aks/namespaces/specs/sleep-pod.yaml -n default
 
-kubectl apply -f labs/namespaces/specs/sleep-pod.yaml -n kube-system
+kubectl apply -f labs/aks/namespaces/specs/sleep-pod.yaml -n kube-system
 
 kubectl get pods -l app=sleep --all-namespaces
 ```
@@ -134,7 +134,7 @@ Kubectl can deploy all the YAML in a folder, but it doesn't check the objects fo
 But namespaces need to exist before any objects can be created in them, so the namespace YAML is called `01_namespaces.yaml` to ensure it gets created first (Kubectl processes files in order by filename).
 
 ```
-kubectl apply -f labs/namespaces/specs/whoami
+kubectl apply -f labs/aks/namespaces/specs/whoami
 
 kubectl get svc -n whoami
 ```
@@ -151,7 +151,7 @@ Here's another app where all the components will be isolated in their own namesp
 
 
 ```
-kubectl apply -f labs/namespaces/specs/configurable
+kubectl apply -f labs/aks/namespaces/specs/configurable
 
 kubectl get deploy -A --show-labels
 ```
@@ -200,7 +200,7 @@ Resource **requests** specify how much memory or CPU the Pod would like allocate
 There's no Nginx proxy for this release of the Pi app and the CPU allocation is very small, so the calculations will be slow.
 
 ```
-kubectl apply -f labs/namespaces/specs/pi
+kubectl apply -f labs/aks/namespaces/specs/pi
 
 kubectl -n pi get quota
 
@@ -222,7 +222,7 @@ Let's speed it up:
 
 
 ```
-kubectl apply -f labs/namespaces/specs/pi/mid-cpu
+kubectl apply -f labs/aks/namespaces/specs/pi/mid-cpu
 
 kubectl describe po -l app=pi-web,cpu=mid -n pi
 ```
@@ -233,7 +233,7 @@ kubectl describe po -l app=pi-web,cpu=mid -n pi
 Try and go to the max - [max-cpu/web-deployment.yaml](specs/pi/max-cpu/web-deployment.yaml) sets a limit of 4.5 CPU cores, which is greater than the quota for the namespace:
 
 ```
-kubectl apply -f labs/namespaces/specs/pi/max-cpu
+kubectl apply -f labs/aks/namespaces/specs/pi/max-cpu
 
 kubectl -n pi get rs -l app=pi-web
 

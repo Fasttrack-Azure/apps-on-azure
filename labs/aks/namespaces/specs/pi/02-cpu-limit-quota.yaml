@@ -5,5 +5,5 @@ metadata:
   namespace: pi
 spec:
   hard:
-    requests.cpu: 3500m
-    limits.cpu: 4000m
+    requests.cpu: 2000m
+    limits.cpu: 3500m
